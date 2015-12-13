@@ -26,17 +26,17 @@ modules installed on your board.
 Here are, in short, the commands which I'm using to configure and compile the
 Linux kernel and RTAI:
 
-host:<kernel>/ > make ARCH=arm CROSS_COMPILE=arm-linux- da850_omapl138_defconfig
-host:<kernel>/ > make ARCH=arm CROSS_COMPILE=arm-linux- -j2 uImage modules
+    host:<kernel>/ > make ARCH=arm CROSS_COMPILE=arm-linux- da850_omapl138_defconfig
+    host:<kernel>/ > make ARCH=arm CROSS_COMPILE=arm-linux- -j2 uImage modules
 
-host:<RTAI>/ > LINUXDIR="/mnt/tmpfs/linux-davinci/"
-host:<RTAI>/ > RTAIOPTIONS="--enable-lxrt-use-linux-syscall --with-lxrt-inline=static --prefix=/tmp/rootfs/install/"
-host:<RTAI>/ > ARCH=arm CROSS_COMPILE=arm-linux- ./configure --host=arm-linux --with-linux-dir=${LINUXDIR} ${RTAIOPTIONS}
-host:<RTAI>/ > make
+    host:<RTAI>/ > LINUXDIR="/mnt/tmpfs/linux-davinci/"
+    host:<RTAI>/ > RTAIOPTIONS="--enable-lxrt-use-linux-syscall --with-lxrt-inline=static --prefix=/tmp/rootfs/install/"
+    host:<RTAI>/ > ARCH=arm CROSS_COMPILE=arm-linux- ./configure --host=arm-linux --with-linux-dir=${LINUXDIR} ${RTAIOPTIONS}
+    host:<RTAI>/ > make
 
 First tests can be done with the tools which are provided with RTAI
-(<RTAI>/testsuite/*). Code examples are also available in the showroom
-(cvs -d:pserver:anonymous@cvs.gna.org:/cvs/rtai co showroom).
+(`<RTAI>/testsuite/*`). Code examples are also available in the showroom
+(`cvs -d:pserver:anonymous@cvs.gna.org:/cvs/rtai co showroom`).
 
 
 
@@ -159,8 +159,8 @@ ported to RTAI before. You'll have an existing RTAI port for that kernel too
 for the next step. Maybe this step needs some time, but there is no RTAI
 involved in this step and therefore it should be relatively simple.
 
-This step can be done with a minimal defconfig (without fs/, drivers/, ...) to
-reduce compile time and to avoid compiling of unneeded code.
+This step can be done with a minimal defconfig (without `fs/`, `drivers/`,
+...) to reduce compile time and to avoid compiling of unneeded code.
 
 3   Port existing Adeos/IPIPE/RTAI support to your core/processor/board
 -----------------------------------------------------------------------
@@ -190,50 +190,53 @@ Finally make sure, that the kernel is able to boot both with IPIPE disabled and
 with IPIPE enabled.
 
 Modified files:
-- arch/arm/mach-<subarch>/timer.c
-- include/asm-arm/arch-<subarch>/irqs.h
-- include/asm-arm/system.h
-- include/linux/ipipe_tickdev.h
-- kernel/sched.c
+
+    - arch/arm/mach-<subarch>/timer.c
+    - include/asm-arm/arch-<subarch>/irqs.h
+    - include/asm-arm/system.h
+    - include/linux/ipipe_tickdev.h
+    - kernel/sched.c
 
 3.2 Prepare RTAI for the new ARM subarchitecture
 ------------------------------------------------
 
 RTAI must support the new subarchitecture. If the subarchitecture isn't
-supported the configure script ends with the error message: 'Unsupported ARM
-sub-architecture -- Sorry.'
+supported the configure script ends with the error message: `Unsupported ARM
+sub-architecture -- Sorry.`
 
 The configure script and some makefiles need to be modified:
-'configure.in', 'base/arch/arm/hal/GNUmakefile.am' and
-'base/include/asm-arm/GNUmakefile.am'.
+`configure.in`, `base/arch/arm/hal/GNUmakefile.am` and
+`base/include/asm-arm/GNUmakefile.am`.
 
 Some new directories and files for the subarchitecture are needed too:
-In 'base/arch/arm/hal/mach-<subarch>/': '<subarch>-timer.c' and in
-'base/include/asm-arm/arch-<subarch>/': 'rtai_arch.h', 'rtai_exports.h',
-'rtai_timer.h'.
+In `base/arch/arm/hal/mach-<subarch>/`: `<subarch>-timer.c` and in
+`base/include/asm-arm/arch-<subarch>/`: `rtai_arch.h`, `rtai_exports.h`,
+`rtai_timer.h`.
 
-The commands 'autoconf2.61', 'aclocal' and 'automake' prepare RTAI for the new
+The commands `autoconf2.61`, `aclocal` and `automake` prepare RTAI for the new
 ARM subarchitecture. After patching the files and running the commands RTAI is
 ready and can be configured for the new architecture.
 
 Modified files:
-- base/arch/arm/hal/GNUmakefile.am
-- base/include/asm-arm/GNUmakefile.am
-- configure.in
-- base/arch/arm/hal/mach-<subarch>/<subarch>-timer.c
-- base/include/asm-arm/arch-<subarch>/rtai_arch.h
-- base/include/asm-arm/arch-<subarch>/rtai_exports.h
-- base/include/asm-arm/arch-<subarch>/rtai_timer.h
+
+    - base/arch/arm/hal/GNUmakefile.am
+    - base/include/asm-arm/GNUmakefile.am
+    - configure.in
+    - base/arch/arm/hal/mach-<subarch>/<subarch>-timer.c
+    - base/include/asm-arm/arch-<subarch>/rtai_arch.h
+    - base/include/asm-arm/arch-<subarch>/rtai_exports.h
+    - base/include/asm-arm/arch-<subarch>/rtai_timer.h
 
 3.3 Compiling RTAI against the IPIPE-enabled kernel
 ---------------------------------------------------
 
 Modified files:
-- base/arch/arm/hal/hal.c
-- base/arch/arm/hal/mach-<subarch>/<subarch>-timer.c
-- base/include/asm-arm/arch-<subarch>/rtai_arch.h
-- base/include/asm-arm/arch-<subarch>/rtai_timer.h
-- base/include/asm-arm/rtai_hal.h
+
+    - base/arch/arm/hal/hal.c
+    - base/arch/arm/hal/mach-<subarch>/<subarch>-timer.c
+    - base/include/asm-arm/arch-<subarch>/rtai_arch.h
+    - base/include/asm-arm/arch-<subarch>/rtai_timer.h
+    - base/include/asm-arm/rtai_hal.h
 
 3.4 Implementing code in the dummy functions - The real porting work
 --------------------------------------------------------------------
