@@ -162,8 +162,8 @@ involved in this step and therefore it should be relatively simple.
 This step can be done with a minimal defconfig (without fs/, drivers/, ...) to
 reduce compile time and to avoid compiling of unneeded code.
 
-3   Port the existing Adeos/IPIPE/RTAI support to your core/processor/board
----------------------------------------------------------------------------
+3   Port existing Adeos/IPIPE/RTAI support to your core/processor/board
+-----------------------------------------------------------------------
 
 Use the existing RTAI patches in this step. Read the patches, try to understand
 what they are patching, divide them into the Adeos/IPIPE and RTAI parts.
