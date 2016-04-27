@@ -1,0 +1,12 @@
+Example Log
+===========
+
+- test1 PASSED
+- test2 FAILED
+- test3 BLOCKED by FAILED test2
+
+Notes
+=====
+
+Example log file.
+A pdf version of this log was created with: ./scripts/log2pdf.sh btests/_test.log
