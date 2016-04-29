@@ -1,8 +1,22 @@
 board test
 ----------
 
+date & test version:
 date         [<date>]
 test version [<version>]
+
+system:
+core         [<core>]
+cpu          [<cpu>]
+#n cpus      [<#count>]
+frequency    [<cpu_freq>]
+board        [<board>]
+
+versions:
+linux        [<#linux>+<#patch_id>]
+rtai         [<#rtai>+<#patch_id>]
+gcc          [gcc]
+toolchain    [toolchain]
 
 
 
