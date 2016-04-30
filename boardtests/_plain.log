@@ -23,6 +23,20 @@ toolchain    [toolchain]
 patch, configure, compile
 -------------------------
 
+linux:
+1   linux patch             [PASSED/FAILED]
+1.1 successful hunks        [<#count>]
+1.2 failed hunks            [<#count>]
+1.3 configure               [PASSED/BLOCKED/FAILED]
+1.4 compile                 [PASSED/BLOCKED/FAILED]
+
+rtai:
+2   rtai patch              [INTEGRATED/PASSED/FAILED]
+2.1 successful hunks        [<#count>]
+2.2 failed hunks            [<#count>]
+2.3 configure               [PASSED/BLOCKED/FAILED]
+2.4 compile                 [PASSED/BLOCKED/FAILED]
+
 
 
 basic tests
