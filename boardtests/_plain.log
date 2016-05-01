@@ -42,6 +42,52 @@ rtai:
 basic tests
 -----------
 
+loading/unloading kernel modules:
+3.1   kernel modules
+3.1.1 load                  [PASSED/FAILED]
+3.1.2 unload                [PASSED/BLOCKED/FAILED]
+3.1.3 load (2nd)            [PASSED/BLOCKED/FAILED]
+3.1.4 unload (2nd)          [PASSED/BLOCKED/FAILED]
+
+latency test:
+3.2   latency: idle system
+3.2.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
+3.2.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
+3.2.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
+3.2.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+3.3   latency: system under load
+3.3.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
+3.3.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
+3.3.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
+3.3.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+
+preempt test:
+3.4   preempt: idle system
+3.4.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
+3.4.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
+3.4.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
+3.4.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+3.5   preempt: system under load
+3.5.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
+3.5.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
+3.5.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
+3.5.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+
+switch test:
+3.6   switch: idle system
+3.6.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
+3.6.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
+3.6.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
+3.6.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+3.6   switch: system under load
+3.7.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
+3.7.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
+3.7.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
+3.7.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+
+latency test, 12h (user/oneshot/load):
+3.8   latency: 12h          [PASSED/BLOCKED/FAILED]
+
 
 
 performance
