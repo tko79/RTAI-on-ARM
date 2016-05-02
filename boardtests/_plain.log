@@ -93,6 +93,31 @@ latency test, 12h (user/oneshot/load):
 performance
 -----------
 
+3.2/3.3 latency test        [idle]/[load]
+-----------------------------------------
+kernelspace, oneshot        [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+kernelspace, periodic       [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+userspace, oneshot          [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+userspace, periodic         [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+
+3.4/3.5 preempt test        [idle]/[load]
+-----------------------------------------
+kernelspace, oneshot        [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+kernelspace, periodic       [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+userspace, oneshot          [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+userspace, periodic         [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+
+3.6/3.7 switch test         [idle]/[load]
+-----------------------------------------
+kernelspace, oneshot        [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+kernelspace, periodic       [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+userspace, oneshot          [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+userspace, periodic         [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+
+3.8 latency test, 12h
+-----------------------------------------
+userspace, oneshot                 [____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+
 
 
 notes
