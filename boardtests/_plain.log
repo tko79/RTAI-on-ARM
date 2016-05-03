@@ -2,8 +2,8 @@ board test
 ----------
 
 date & test version:
-date         [<date>]
-test version [<version>]
+date         [03.05.2016]
+test version [v1.0.0]
 
 system:
 core         [<core>]
