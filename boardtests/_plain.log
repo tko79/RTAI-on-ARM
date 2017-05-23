@@ -2,7 +2,7 @@ board test
 ----------
 
 date & test version:
-date         [03.05.2016]
+date         [<date>]
 test version [v0.1.0]
 
 system:
@@ -15,8 +15,8 @@ board        [<board>]
 versions:
 linux        [<#linux>+<#patch_id>]
 rtai         [<#rtai>+<#patch_id>]
-gcc          [gcc]
-toolchain    [toolchain]
+gcc          [<#gcc>]
+toolchain    [<toolchain>]
 
 
 
