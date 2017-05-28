@@ -33,3 +33,11 @@ data and results. Finally you should create a pdf version of your test.
     cp boardtests/_plain.log boardtests/omapl138_v1_rtai3.9.1_linux2.6.37.6.log
     vi boardtests/omapl138_v1_rtai3.9.1_linux2.6.37.6.log
     ./scripts/log2pdf.sh boardtests/omapl138_v1_rtai3.9.1_linux2.6.37.6.log
+
+***
+
+# License
+
+RTAI-on-ARM is licensed under the GNU General Public License, version 2. See
+[COPYING](https://github.com/tko79/RTAI-on-ARM/blob/master/COPYING) for
+details.
