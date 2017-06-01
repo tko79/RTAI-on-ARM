@@ -19,6 +19,16 @@
 
 # setup variables
 
+license=$(cat <<EOF
+log2pdf  Copyright (C) 2016  Torsten Koschorrek
+
+This program comes with ABSOLUTELY NO WARRANTY. This is free software, and you
+are welcome to redistribute it under the terms of the GNU General Public License
+as published by the Free Software Foundation, either version 2 of the License,
+or (at your option) any later version.
+EOF
+)
+
 FONT_CB="\x00font{Courier_Bold10}"
 FONT_DF="\x00font{default}"
 COLOR_GN="\x00color{0.0 0.5 0.0}"
@@ -37,6 +47,11 @@ BIN_ENSCRIPT="/usr/bin/enscript"
 BIN_PS2PDF="/usr/bin/ps2pdf"
 
 TMPFILE="/tmp/log2pdf.ps"
+
+# print license
+
+echo -e "$license"
+echo -e ""
 
 # check binaries
 
