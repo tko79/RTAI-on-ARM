@@ -74,13 +74,18 @@ fi
 
 # check logfile
 
-LOGFILE=`echo $1 | ${BIN_AWK} -F. '{ print $1 }'`
-if [ "${LOGFILE}" == "" ]; then
-    LOGFILE="."`echo $1 | ${BIN_AWK} -F. '{ print $2 }'`
-    if [ "${LOGFILE}" == "" ]; then
-	echo "No logfile given! Please add the logfile as the first parameter!"
-	exit 1
-    fi
+if [ $# -eq 0 ]; then
+    echo "No logfile given! Please add the logfile as the first parameter!"
+    exit 1
+fi
+if [ "`echo $1 | ${BIN_AWK} -F. '{ print $NF }'`" == "log" ]; then
+    LOGFILE=`echo $1 | ${BIN_SED} 's/.log//'`
+else
+    LOGFILE=$1
+fi
+if [ ! -e "${LOGFILE}.log" ]; then
+    echo "logfile "${LOGFILE}".log not found! Please add the logfile as the first parameter!"
+    exit 1
 fi
 
 # let's enscript
