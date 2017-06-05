@@ -45,6 +45,7 @@ STYLE_NORMAL=${FONT_DF}${COLOR_BL}
 
 BIN_AWK="/usr/bin/awk"
 BIN_SED="/bin/sed"
+BIN_GREP="/bin/grep"
 BIN_ENSCRIPT="/usr/bin/enscript"
 BIN_PS2PDF="/usr/bin/ps2pdf"
 
@@ -93,6 +94,26 @@ if [ ! -e "${LOGFILE}.log" ]; then
 fi
 
 echo -e ${DOTS}${LOGFILE}".log, done!"
+
+# check date
+
+echo -n "checking test date ..."
+
+${BIN_GREP} "\[<date>\]" ${LOGFILE}.log &> /dev/null
+
+if [ $? == 0 ]; then
+    echo -ne ${DOTS}"test date not set! proceeding anyway? [y,n] "
+    read -s -n 1 answer
+    if [ "$answer" == "y" ]; then
+	echo -e "Proceeding!"
+    else
+	echo -e "Converting to pdf aborted!"
+	exit 1
+    fi
+else
+    DATE=`${BIN_GREP} "date" ${LOGFILE}.log | ${BIN_AWK} -F[ '{ print $2 }' | ${BIN_AWK} -F] '{ print $1 }'`
+    echo -e ${DOTS}${DATE}", done!"
+fi
 
 # let's enscript
 
