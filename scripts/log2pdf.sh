@@ -29,6 +29,8 @@ or (at your option) any later version.
 EOF
 )
 
+DOTS="\b\b\b\b: "
+
 FONT_CB="\x00font{Courier_Bold10}"
 FONT_DF="\x00font{default}"
 COLOR_GN="\x00color{0.0 0.5 0.0}"
@@ -74,8 +76,10 @@ fi
 
 # check logfile
 
+echo -n "checking logfile ..."
+
 if [ $# -eq 0 ]; then
-    echo "No logfile given! Please add the logfile as the first parameter!"
+    echo -e ${DOTS}"No logfile given! Please add the logfile as the first parameter!"
     exit 1
 fi
 if [ "`echo $1 | ${BIN_AWK} -F. '{ print $NF }'`" == "log" ]; then
@@ -84,11 +88,15 @@ else
     LOGFILE=$1
 fi
 if [ ! -e "${LOGFILE}.log" ]; then
-    echo "logfile "${LOGFILE}".log not found! Please add the logfile as the first parameter!"
+    echo -e ${DOTS}"logfile "${LOGFILE}".log not found! Please add the logfile as the first parameter!"
     exit 1
 fi
 
+echo -e ${DOTS}${LOGFILE}".log, done!"
+
 # let's enscript
+
+echo -n "converting log file to pdf ..."
 
 ${BIN_SED} \
     -e "s/PASSED/${STYLE_PASSED}PASSED${STYLE_NORMAL}/g" \
@@ -97,3 +105,5 @@ ${BIN_SED} \
     ${LOGFILE}.log | \
     ${BIN_ENSCRIPT} --no-header --escapes --font=Courier10 --output=${TMPFILE} &> /dev/null
 ${BIN_PS2PDF} ${TMPFILE} ${LOGFILE}.pdf
+
+echo -e ${DOTS}"done!"
