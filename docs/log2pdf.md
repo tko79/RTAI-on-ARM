@@ -29,9 +29,10 @@ The `<logfile>` is the log file which should be converted into a pdf document.
 
 - `<logfile>.pdf`: test log in pdf file format
 
-## Used programs
+## Used Programs
 
-- awk: 1.3.3-17 (debian)
-- sed: 4.2.1-10 (debian)
-- enscript: 1.6.5.90-2 (debian)
-- ps2pdf: 9.05~dfsg-6.3+ (debian)
+- echo: coreutils-8.13-3.5 (debian)
+- awk: mawk-1.3.3-17 (debian)
+- sed: sed-4.2.1-10 (debian)
+- enscript: enscript-1.6.5.90-2 (debian)
+- ps2pdf: ghostscript-9.05~dfsg-6.3+ (debian)
