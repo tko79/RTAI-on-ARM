@@ -36,6 +36,11 @@ data and results. Finally you should create a pdf version of your test.
     vi boardtests/omapl138_v1_rtai3.9.1_linux2.6.37.6.log
     ./scripts/log2pdf.sh boardtests/omapl138_v1_rtai3.9.1_linux2.6.37.6.log
 
+Please use the following syntax for the log file, with processor e.g. omapl138,
+version or test number with this processor and rtai and linux versions:
+
+    <processor>_v<test_version>_rtai<rtai_version>_linux<linux_version>.log
+
 ***
 
 # License
