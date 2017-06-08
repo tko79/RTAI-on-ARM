@@ -1,0 +1,2 @@
+# ignore generated log files in pdf format
+boardtests/*.pdf
