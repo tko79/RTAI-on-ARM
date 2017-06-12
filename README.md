@@ -1,6 +1,6 @@
 # RTAI-on-ARM
 
-Beside the X86 and X86/64 architecture and others [RTAI](https://www.rtai.org)
+Beside the x86 and x86-64 architecture and others [RTAI](https://www.rtai.org)
 also supports ARM architecture.
 
 Key task of this repository is to track the development of RTAI on ARM and with
