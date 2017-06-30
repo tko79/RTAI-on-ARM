@@ -12,11 +12,13 @@ already integrated into RTAI. Documentation (mainly via the
 [Wiki](https://github.com/tko79/RTAI-on-ARM/wiki)), test scripts and test
 results are also part of this repository.
 
-Strategy and roadmap is the development in small but steady steps. Latest
-supported RTAI version is 3.9.1 and Linux version is 2.6.37.6. Issues
+Latest supported RTAI version is 3.9.1 and Linux version is 2.6.37.6. Issues
 [#5](https://github.com/tko79/RTAI-on-ARM/issues/5) and
 [#6](https://github.com/tko79/RTAI-on-ARM/issues/6) are created to track the
-porting to RTAI 3.9.2 and Linux 2.6.38.8.
+porting to RTAI 3.9.2 and Linux 2.6.38.8. But there is more this project wants
+to achieve! Please have a closer look to the
+[VISION](https://github.com/tko79/RTAI-on-ARM/blob/master/VISION.md) document
+for RTAI-on-ARM project for some more words on this.
 
 ***
 
