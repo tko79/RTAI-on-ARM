@@ -15,8 +15,10 @@ results are also part of this repository.
 Latest supported RTAI version is 3.9.1 and Linux version is 2.6.37.6. Issues
 [#5](https://github.com/tko79/RTAI-on-ARM/issues/5) and
 [#6](https://github.com/tko79/RTAI-on-ARM/issues/6) are created to track the
-porting to RTAI 3.9.2 and Linux 2.6.38.8. But there is more this project wants
-to achieve! Please have a closer look to the
+porting to RTAI 3.9.2 and Linux 2.6.38.8. The
+[SupportedBoards](https://github.com/tko79/RTAI-on-ARM/wiki/SupportedBoards#overview)
+list provides an overview of the status of currently available ARM boards. But
+there is more this project wants to achieve! Please have a closer look to the
 [VISION](https://github.com/tko79/RTAI-on-ARM/blob/master/VISION.md) document
 for RTAI-on-ARM project for some more words on this.
 
