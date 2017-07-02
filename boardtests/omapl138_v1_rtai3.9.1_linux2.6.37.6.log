@@ -13,10 +13,10 @@ frequency    [800 MHz]
 board        [OMAP-L138 EVM]
 
 versions:
-linux        [2.6.37+<#patch_id>]
-rtai         [3.9.1+<#patch_id>]
-gcc          [<#gcc>]
-toolchain    [<toolchain>]
+linux        [2.6.37.6-13bcc7c]
+rtai         [3.9.1-d2d5726]
+gcc          [4.4.2]
+toolchain    [buildroot-2009.11-5a161ff]
 
 
 
