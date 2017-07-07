@@ -1,0 +1,37 @@
+.TH LOG2PDF.SH 1 "2017-07-07" log2pdf.sh
+.SH Name
+.PP
+log2pdf - Tool to convert plaintext test logs into pdf file format
+.SH Synopsis
+.PP
+\f[C]log2pdf.sh\ <logfile>\f[]
+.SH Description
+.PP
+\f[B]log2pdf\f[] converts plaintext test logs into pdf file format.
+The script is part of RTAI-on-ARM project.
+.PP
+The \f[C]<logfile>\f[] is the log file which should be converted into a
+pdf document.
+.SH Details
+.SS Files
+.SS Input
+.IP \[bu] 2
+\f[C]<logfile>.log\f[]: test logfile to be converted
+.SS Intermediate
+.IP \[bu] 2
+\f[C]/tmp/log2pdf.ps\f[]: file is created with enscript as an
+intermediate step
+.SS Output
+.IP \[bu] 2
+\f[C]<logfile>.pdf\f[]: test log in pdf file format
+.SS Used Programs
+.IP \[bu] 2
+echo: coreutils-8.13-3.5 (debian)
+.IP \[bu] 2
+awk: mawk-1.3.3-17 (debian)
+.IP \[bu] 2
+sed: sed-4.2.1-10 (debian)
+.IP \[bu] 2
+enscript: enscript-1.6.5.90-2 (debian)
+.IP \[bu] 2
+ps2pdf: ghostscript-9.05~dfsg-6.3+ (debian)
