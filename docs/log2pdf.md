@@ -1,3 +1,8 @@
+[//]: # (header info to convert markdown to man pages with md2man.sh)
+[//]: # (title:LOG2PDF.SH)
+[//]: # (section:1)
+[//]: # (description:log2pdf.sh)
+
 # Name
 
 log2pdf - Tool to convert plaintext test logs into pdf file format
