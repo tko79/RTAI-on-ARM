@@ -1,26 +1,22 @@
 # RTAI-on-ARM
 
-Beside the x86 and x86-64 architecture and others [RTAI](https://www.rtai.org)
-also supports ARM architecture.
+Beside the x86 and x86-64 architecture and others [RTAI] also supports ARM
+architecture.
 
 Key task of this repository is to track the development of RTAI on ARM and with
 this to improve the support of the ARM architecture in RTAI.
 
 To achieve that goal this repository intends to be the home of several ARM
 related patches, including development patches as well as patches which are
-already integrated into RTAI. Documentation (mainly via the
-[Wiki](https://github.com/tko79/RTAI-on-ARM/wiki)), test scripts and test
-results are also part of this repository.
+already integrated into RTAI. Documentation (mainly via the [Wiki]), test
+scripts and test results are also part of this repository.
 
 Latest supported RTAI version is 3.9.1 and Linux version is 2.6.37.6. Issues
-[#5](https://github.com/tko79/RTAI-on-ARM/issues/5) and
-[#6](https://github.com/tko79/RTAI-on-ARM/issues/6) are created to track the
-porting to RTAI 3.9.2 and Linux 2.6.38.8. The
-[SupportedBoards](https://github.com/tko79/RTAI-on-ARM/wiki/SupportedBoards#overview)
-list provides an overview of the status of currently available ARM boards. But
-there is more this project wants to achieve! Please have a closer look to the
-[VISION](https://github.com/tko79/RTAI-on-ARM/blob/master/VISION.md) document
-for RTAI-on-ARM project for some more words on this.
+[#5] and [#6] are created to track the porting to RTAI 3.9.2 and Linux
+2.6.38.8. The [SupportedBoards] list provides an overview of the status of
+currently available ARM boards. But there is more this project wants to
+achieve! Please have a closer look to the [VISION] document for RTAI-on-ARM
+project for some more words on this.
 
 ***
 
@@ -50,5 +46,12 @@ version or test number with this processor and rtai and linux versions:
 # License
 
 RTAI-on-ARM is licensed under the GNU General Public License, version 2. See
-[COPYING](https://github.com/tko79/RTAI-on-ARM/blob/master/COPYING) for
-details.
+[COPYING] for details.
+
+[RTAI]: https://www.rtai.org
+[Wiki]: https://github.com/tko79/RTAI-on-ARM/wiki
+[#5]: https://github.com/tko79/RTAI-on-ARM/issues/5
+[#6]: https://github.com/tko79/RTAI-on-ARM/issues/6
+[SupportedBoards]: https://github.com/tko79/RTAI-on-ARM/wiki/SupportedBoards#overview
+[VISION]: https://github.com/tko79/RTAI-on-ARM/blob/master/VISION.md
+[COPYING]: https://github.com/tko79/RTAI-on-ARM/blob/master/COPYING
