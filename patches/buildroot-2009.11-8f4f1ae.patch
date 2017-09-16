@@ -1,9 +1,9 @@
 diff --git a/configs/lets_use_this_defconfig b/configs/lets_use_this_defconfig
 new file mode 100644
-index 0000000..44259b6
+index 0000000..21a2717
 --- /dev/null
 +++ b/configs/lets_use_this_defconfig
-@@ -0,0 +1,877 @@
+@@ -0,0 +1,875 @@
 +#
 +# Automatically generated make config: don't edit
 +# Wed Jun  8 21:36:43 2011
@@ -28,7 +28,7 @@ index 0000000..44259b6
 +# BR2_sparc64 is not set
 +# BR2_x86_64 is not set
 +# BR2_xtensa is not set
-+# BR2_generic_arm is not set
++BR2_generic_arm=y
 +# BR2_arm7tdmi is not set
 +# BR2_arm610 is not set
 +# BR2_arm710 is not set
@@ -44,18 +44,16 @@ index 0000000..44259b6
 +#
 +# cortex-A8 needs gcc >= 4.4.x
 +#
-+BR2_cortex_a8=y
++# BR2_cortex_a8 is not set
 +# BR2_sa110 is not set
 +# BR2_sa1100 is not set
 +# BR2_xscale is not set
 +# BR2_iwmmxt is not set
-+BR2_ARM_TYPE="ARM_CORTEXA8"
++BR2_ARM_TYPE="GENERIC_ARM"
 +BR2_ARM_EABI=y
 +# BR2_ARM_OABI is not set
 +BR2_ARCH="arm"
 +BR2_ENDIAN="LITTLE"
-+BR2_GCC_TARGET_TUNE="cortex-a8"
-+BR2_GCC_TARGET_ARCH="armv7-a"
 +BR2_GCC_TARGET_ABI="aapcs-linux"
 +
 +#
@@ -75,7 +73,7 @@ index 0000000..44259b6
 +# BR2_TARGET_GENERIC_ACCESS_POINT is not set
 +# BR2_TARGET_GENERIC_FIREWALL is not set
 +# BR2_TARGET_GENERIC_DEV_SYSTEM is not set
-+BR2_TARGET_GENERIC_HOSTNAME="beagle"
++BR2_TARGET_GENERIC_HOSTNAME="generic"
 +BR2_TARGET_GENERIC_ISSUE="Welcome to Buildroot"
 +BR2_TARGET_GENERIC_GETTY=y
 +# BR2_TARGET_GENERIC_GETTY_NONE is not set
@@ -881,6 +879,168 @@ index 0000000..44259b6
 +BR2_KERNEL_none=y
 +# BR2_KERNEL_LINUX_ADVANCED is not set
 +# BR2_KERNEL_LINUX is not set
+diff --git a/configs/lets_use_this_defconfig-beagle.patch b/configs/lets_use_this_defconfig-beagle.patch
+new file mode 100644
+index 0000000..7d8b4cc
+--- /dev/null
++++ b/configs/lets_use_this_defconfig-beagle.patch
+@@ -0,0 +1,43 @@
++diff --git a/configs/lets_use_this_defconfig b/configs/lets_use_this_defconfig
++index 21a2717..44259b6 100644
++--- a/configs/lets_use_this_defconfig
+++++ b/configs/lets_use_this_defconfig
++@@ -22,7 +22,7 @@ BR2_arm=y
++ # BR2_sparc64 is not set
++ # BR2_x86_64 is not set
++ # BR2_xtensa is not set
++-BR2_generic_arm=y
+++# BR2_generic_arm is not set
++ # BR2_arm7tdmi is not set
++ # BR2_arm610 is not set
++ # BR2_arm710 is not set
++@@ -38,16 +38,18 @@ BR2_generic_arm=y
++ #
++ # cortex-A8 needs gcc >= 4.4.x
++ #
++-# BR2_cortex_a8 is not set
+++BR2_cortex_a8=y
++ # BR2_sa110 is not set
++ # BR2_sa1100 is not set
++ # BR2_xscale is not set
++ # BR2_iwmmxt is not set
++-BR2_ARM_TYPE="GENERIC_ARM"
+++BR2_ARM_TYPE="ARM_CORTEXA8"
++ BR2_ARM_EABI=y
++ # BR2_ARM_OABI is not set
++ BR2_ARCH="arm"
++ BR2_ENDIAN="LITTLE"
+++BR2_GCC_TARGET_TUNE="cortex-a8"
+++BR2_GCC_TARGET_ARCH="armv7-a"
++ BR2_GCC_TARGET_ABI="aapcs-linux"
++ 
++ #
++@@ -67,7 +69,7 @@ BR2_GCC_TARGET_ABI="aapcs-linux"
++ # BR2_TARGET_GENERIC_ACCESS_POINT is not set
++ # BR2_TARGET_GENERIC_FIREWALL is not set
++ # BR2_TARGET_GENERIC_DEV_SYSTEM is not set
++-BR2_TARGET_GENERIC_HOSTNAME="generic"
+++BR2_TARGET_GENERIC_HOSTNAME="beagle"
++ BR2_TARGET_GENERIC_ISSUE="Welcome to Buildroot"
++ BR2_TARGET_GENERIC_GETTY=y
++ # BR2_TARGET_GENERIC_GETTY_NONE is not set
+diff --git a/configs/lets_use_this_defconfig-l138.patch b/configs/lets_use_this_defconfig-l138.patch
+new file mode 100644
+index 0000000..6d74c28
+--- /dev/null
++++ b/configs/lets_use_this_defconfig-l138.patch
+@@ -0,0 +1,45 @@
++diff --git a/configs/lets_use_this_defconfig b/configs/lets_use_this_defconfig
++index 21a2717..54d1dd7 100644
++--- a/configs/lets_use_this_defconfig
+++++ b/configs/lets_use_this_defconfig
++@@ -22,14 +22,14 @@ BR2_arm=y
++ # BR2_sparc64 is not set
++ # BR2_x86_64 is not set
++ # BR2_xtensa is not set
++-BR2_generic_arm=y
+++# BR2_generic_arm is not set
++ # BR2_arm7tdmi is not set
++ # BR2_arm610 is not set
++ # BR2_arm710 is not set
++ # BR2_arm720t is not set
++ # BR2_arm920t is not set
++ # BR2_arm922t is not set
++-# BR2_arm926t is not set
+++BR2_arm926t=y
++ # BR2_arm10t is not set
++ # BR2_arm1136jf_s is not set
++ # BR2_arm1176jz_s is not set
++@@ -43,11 +43,13 @@ BR2_generic_arm=y
++ # BR2_sa1100 is not set
++ # BR2_xscale is not set
++ # BR2_iwmmxt is not set
++-BR2_ARM_TYPE="GENERIC_ARM"
+++BR2_ARM_TYPE="ARM926T"
++ BR2_ARM_EABI=y
++ # BR2_ARM_OABI is not set
++ BR2_ARCH="arm"
++ BR2_ENDIAN="LITTLE"
+++BR2_GCC_TARGET_TUNE="arm9tdmi"
+++BR2_GCC_TARGET_ARCH="armv5te"
++ BR2_GCC_TARGET_ABI="aapcs-linux"
++ 
++ #
++@@ -67,7 +69,7 @@ BR2_GCC_TARGET_ABI="aapcs-linux"
++ # BR2_TARGET_GENERIC_ACCESS_POINT is not set
++ # BR2_TARGET_GENERIC_FIREWALL is not set
++ # BR2_TARGET_GENERIC_DEV_SYSTEM is not set
++-BR2_TARGET_GENERIC_HOSTNAME="generic"
+++BR2_TARGET_GENERIC_HOSTNAME="l138"
++ BR2_TARGET_GENERIC_ISSUE="Welcome to Buildroot"
++ BR2_TARGET_GENERIC_GETTY=y
++ # BR2_TARGET_GENERIC_GETTY_NONE is not set
+diff --git a/configs/lets_use_this_defconfig-scb9xxx.patch b/configs/lets_use_this_defconfig-scb9xxx.patch
+new file mode 100644
+index 0000000..155ee24
+--- /dev/null
++++ b/configs/lets_use_this_defconfig-scb9xxx.patch
+@@ -0,0 +1,56 @@
++diff --git a/configs/lets_use_this_defconfig b/configs/lets_use_this_defconfig
++index 60c21fd..5edd16f 100644
++--- a/configs/lets_use_this_defconfig
+++++ b/configs/lets_use_this_defconfig
++@@ -67,13 +67,13 @@ BR2_GCC_TARGET_ABI="aapcs-linux"
++ # BR2_TARGET_GENERIC_ACCESS_POINT is not set
++ # BR2_TARGET_GENERIC_FIREWALL is not set
++ # BR2_TARGET_GENERIC_DEV_SYSTEM is not set
++-BR2_TARGET_GENERIC_HOSTNAME="generic"
+++BR2_TARGET_GENERIC_HOSTNAME="scb9xxx"
++ BR2_TARGET_GENERIC_ISSUE="Welcome to Buildroot"
++ BR2_TARGET_GENERIC_GETTY=y
++ # BR2_TARGET_GENERIC_GETTY_NONE is not set
++ # BR2_TARGET_GENERIC_GETTY_TTYS0 is not set
++ # BR2_TARGET_GENERIC_GETTY_TTYS1 is not set
++-BR2_TARGET_GENERIC_GETTY_TTYS2=y
+++# BR2_TARGET_GENERIC_GETTY_TTYS2 is not set
++ # BR2_TARGET_GENERIC_GETTY_TTYS3 is not set
++ # BR2_TARGET_GENERIC_GETTY_TTYAMA0 is not set
++ # BR2_TARGET_GENERIC_GETTY_TTYAMA1 is not set
++@@ -83,7 +83,7 @@ BR2_TARGET_GENERIC_GETTY_TTYS2=y
++ # BR2_TARGET_GENERIC_GETTY_TTYSAC1 is not set
++ # BR2_TARGET_GENERIC_GETTY_TTYSAC2 is not set
++ # BR2_TARGET_GENERIC_GETTY_TTYSAC3 is not set
++-# BR2_TARGET_GENERIC_GETTY_TTYMXC0 is not set
+++BR2_TARGET_GENERIC_GETTY_TTYMXC0=y
++ # BR2_TARGET_GENERIC_GETTY_TTYMXC1 is not set
++ # BR2_TARGET_GENERIC_GETTY_TTYMXC2 is not set
++ # BR2_TARGET_GENERIC_GETTY_TTYUL0 is not set
++@@ -98,7 +98,7 @@ BR2_TARGET_GENERIC_GETTY_TTYS2=y
++ # BR2_TARGET_GENERIC_GETTY_TTYCPM1 is not set
++ # BR2_TARGET_GENERIC_GETTY_TTYCPM2 is not set
++ # BR2_TARGET_GENERIC_GETTY_TTYCPM3 is not set
++-BR2_TARGET_GENERIC_GETTY_PORT="ttyS2"
+++BR2_TARGET_GENERIC_GETTY_PORT="ttymxc0"
++ # BR2_TARGET_GENERIC_GETTY_BAUDRATE_KEEP is not set
++ # BR2_TARGET_GENERIC_GETTY_BAUDRATE_9600 is not set
++ # BR2_TARGET_GENERIC_GETTY_BAUDRATE_19200 is not set
++@@ -213,7 +213,7 @@ BR2_UCLIBC_CONFIG="toolchain/uClibc/uClibc-0.9.30.config"
++ # BR2_BINUTILS_VERSION_2_19 is not set
++ BR2_BINUTILS_VERSION_2_19_1=y
++ BR2_BINUTILS_VERSION="2.19.1"
++-BR2_EXTRA_BINUTILS_CONFIG_OPTIONS=""
+++BR2_EXTRA_BINUTILS_CONFIG_OPTIONS="--with-arch=armv4t"
++ 
++ #
++ # GCC Options
++@@ -232,7 +232,7 @@ BR2_GCC_SUPPORTS_FINEGRAINEDMTUNE=y
++ BR2_GCC_VERSION="4.3.4"
++ BR2_TOOLCHAIN_SYSROOT=y
++ # BR2_GCC_USE_SJLJ_EXCEPTIONS is not set
++-BR2_EXTRA_GCC_CONFIG_OPTIONS=""
+++BR2_EXTRA_GCC_CONFIG_OPTIONS="--with-arch=armv4t"
++ # BR2_GCC_CROSS_FORTRAN is not set
++ # BR2_INSTALL_OBJC is not set
++ # BR2_INSTALL_FORTRAN is not set
 diff --git a/target/makedevs/makedevs.c b/target/makedevs/makedevs.c
 index 5ca45e9..6c75b33 100644
 --- a/target/makedevs/makedevs.c
