@@ -16,7 +16,7 @@ versions:
 linux        [2.6.37.6-13bcc7c]
 rtai         [3.9.1-d2d5726]
 gcc          [4.4.2]
-toolchain    [buildroot-2009.11-5a161ff]
+toolchain    [buildroot-2009.11-8f4f1ae]
 
 
 
@@ -24,18 +24,18 @@ patch, configure, compile
 -------------------------
 
 linux:
-1   linux patch             [PASSED/FAILED]
-1.1 successful hunks        [<#count>]
-1.2 failed hunks            [<#count>]
-1.3 configure               [PASSED/BLOCKED/FAILED]
-1.4 compile                 [PASSED/BLOCKED/FAILED]
+1   linux patch             [PASSED]
+1.1 successful hunks        [0]
+1.2 failed hunks            [0]
+1.3 configure               [PASSED]
+1.4 compile                 [PASSED]
 
 rtai:
-2   rtai patch              [INTEGRATED/PASSED/FAILED]
-2.1 successful hunks        [<#count>]
-2.2 failed hunks            [<#count>]
-2.3 configure               [PASSED/BLOCKED/FAILED]
-2.4 compile                 [PASSED/BLOCKED/FAILED]
+2   rtai patch              [PASSED]
+2.1 successful hunks        [0]
+2.2 failed hunks            [0]
+2.3 configure               [PASSED]
+2.4 compile                 [PASSED]
 
 
 
