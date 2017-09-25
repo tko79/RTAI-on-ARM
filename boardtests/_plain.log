@@ -43,6 +43,7 @@ basic tests
 -----------
 
 loading/unloading kernel modules:
+(modules: rtai_hal.ko sched|lxrt msg sem mbx fifos shm)
 3.1   kernel modules
 3.1.1 load/unload (sched)   [PASSED/FAILED]
 3.1.2 load/unload (sched)   [PASSED/BLOCKED/FAILED]
@@ -50,6 +51,7 @@ loading/unloading kernel modules:
 3.1.4 load/unload (lxrt)    [PASSED/BLOCKED/FAILED]
 
 latency test:
+(rtai_sched.ko, period: 1ms, sysload: dd /dev/urandom /dev/null)
 3.2   latency: idle system
 3.2.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
 3.2.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
@@ -62,11 +64,12 @@ latency test:
 3.3.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
 
 preempt test:
+(rtai_sched.ko, sysload: dd /dev/urandom /dev/null)
 3.4   preempt: idle system
+                                                                                   page 1/2
 3.4.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
 3.4.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
 3.4.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
-                                                                                   page 1/2
 3.4.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
 3.5   preempt: system under load
 3.5.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
@@ -75,6 +78,7 @@ preempt test:
 3.5.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
 
 switch test:
+(rtai_sched.ko, sysload: dd /dev/urandom /dev/null)
 3.6   switch: idle system
 3.6.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
 3.6.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
@@ -123,10 +127,6 @@ userspace, oneshot                 [____] [<#count/mid/worst-case>/BLOCKED/FAILE
 
 notes
 -----
-
-
-
-
 
 
 
