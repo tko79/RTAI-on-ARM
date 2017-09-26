@@ -98,41 +98,41 @@ latency test, 12h (user/oneshot/load):
 performance
 -----------
 
-3.2/3.3 latency test        [idle]/[load]
------------------------------------------
-kernelspace, oneshot        [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
-kernelspace, periodic       [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
-userspace, oneshot          [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
-userspace, periodic         [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+3.2/3.3 latency test      [min___][avg___][max___]
+--------------------------------------------------
+idle kernelspace oneshot  [______][______][______]/[BLOCKED/FAILED]
+idle kernelspace periodic [______][______][______]/[BLOCKED/FAILED]
+idle userspace   oneshot  [______][______][______]/[BLOCKED/FAILED]
+idle userspace   periodic [______][______][______]/[BLOCKED/FAILED]
+load kernelspace oneshot  [______][______][______]/[BLOCKED/FAILED]
+load kernelspace periodic [______][______][______]/[BLOCKED/FAILED]
+load userspace   oneshot  [______][______][______]/[BLOCKED/FAILED]
+load userspace   periodic [______][______][______]/[BLOCKED/FAILED]
 
-3.4/3.5 preempt test        [idle]/[load]
------------------------------------------
-kernelspace, oneshot        [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
-kernelspace, periodic       [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
-userspace, oneshot          [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
-userspace, periodic         [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+3.4/3.5 preempt test      [min___][avg___][max___][j-fast][j-slow]
+------------------------------------------------------------------
+idle kernelspace oneshot  [______][______][______][______][______]/[BLOCKED/FAILED]
+idle kernelspace periodic [______][______][______][______][______]/[BLOCKED/FAILED]
+idle userspace   oneshot  [______][______][______][______][______]/[BLOCKED/FAILED]
+idle userspace   periodic [______][______][______][______][______]/[BLOCKED/FAILED]
+load kernelspace oneshot  [______][______][______][______][______]/[BLOCKED/FAILED]
+load kernelspace periodic [______][______][______][______][______]/[BLOCKED/FAILED]
+load userspace   oneshot  [______][______][______][______][______]/[BLOCKED/FAILED]
+load userspace   periodic [______][______][______][______][______]/[BLOCKED/FAILED]
 
-3.6/3.7 switch test         [idle]/[load]
------------------------------------------
-kernelspace, oneshot        [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
-kernelspace, periodic       [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
-userspace, oneshot          [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
-userspace, periodic         [____]/[____] [<#count/mid/worst-case>/BLOCKED/FAILED]
+3.6 switch test           [susp/res][sem:sig/wait][rpc:rcv-ret]
+---------------------------------------------------------------
+idle kernelspace oneshot  [________][____________][___________]/[BLOCKED/FAILED]
+idle kernelspace periodic [________][____________][___________]/[BLOCKED/FAILED]
+idle userspace   oneshot  [________][____________][___________]/[BLOCKED/FAILED]
+idle userspace   periodic [________][____________][___________]/[BLOCKED/FAILED]
+load kernelspace oneshot  [________][____________][___________]/[BLOCKED/FAILED]
+load kernelspace periodic [________][____________][___________]/[BLOCKED/FAILED]
+load userspace   oneshot  [________][____________][___________]/[BLOCKED/FAILED]
+load userspace   periodic [________][____________][___________]/[BLOCKED/FAILED]
 
-3.8 latency test, 12h
------------------------------------------
-userspace, oneshot                 [____] [<#count/mid/worst-case>/BLOCKED/FAILED]
-
-
-
-notes
------
-
-
-
-
-
-
-
+3.8 latency test, 12h     [min___][avg___][max___]
+--------------------------------------------------
+load userspace oneshot    [______][______][______]/[BLOCKED/FAILED]
 
                                                                                    page 2/2
