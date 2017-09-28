@@ -67,28 +67,20 @@ preempt test:
 (rtai_sched.ko, sysload: dd /dev/urandom /dev/null)
 3.4   preempt: idle system
                                                                                    page 1/2
-3.4.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
-3.4.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
-3.4.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
-3.4.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+3.4.1 kernelspace           [PASSED/BLOCKED/FAILED]
+3.4.3 userspace             [PASSED/BLOCKED/FAILED]
 3.5   preempt: system under load
-3.5.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
-3.5.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
-3.5.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
-3.5.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+3.5.1 kernelspace           [PASSED/BLOCKED/FAILED]
+3.5.3 userspace             [PASSED/BLOCKED/FAILED]
 
 switch test:
 (rtai_sched.ko, sysload: dd /dev/urandom /dev/null)
 3.6   switch: idle system
-3.6.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
-3.6.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
-3.6.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
-3.6.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+3.6.1 kernelspace           [PASSED/BLOCKED/FAILED]
+3.6.3 userspace             [PASSED/BLOCKED/FAILED]
 3.6   switch: system under load
-3.7.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
-3.7.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
-3.7.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
-3.7.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+3.7.1 kernelspace           [PASSED/BLOCKED/FAILED]
+3.7.3 userspace             [PASSED/BLOCKED/FAILED]
 
 latency test, 12h (user/oneshot/load):
 3.8   latency: 12h          [PASSED/BLOCKED/FAILED]
@@ -111,28 +103,36 @@ load userspace   periodic [______][______][______]/[BLOCKED/FAILED]
 
 3.4/3.5 preempt test      [min___][avg___][max___][j-fast][j-slow]
 ------------------------------------------------------------------
-idle kernelspace oneshot  [______][______][______][______][______]/[BLOCKED/FAILED]
-idle kernelspace periodic [______][______][______][______][______]/[BLOCKED/FAILED]
-idle userspace   oneshot  [______][______][______][______][______]/[BLOCKED/FAILED]
-idle userspace   periodic [______][______][______][______][______]/[BLOCKED/FAILED]
-load kernelspace oneshot  [______][______][______][______][______]/[BLOCKED/FAILED]
-load kernelspace periodic [______][______][______][______][______]/[BLOCKED/FAILED]
-load userspace   oneshot  [______][______][______][______][______]/[BLOCKED/FAILED]
-load userspace   periodic [______][______][______][______][______]/[BLOCKED/FAILED]
+idle kernelspace          [______][______][______][______][______]/[BLOCKED/FAILED]
+idle userspace            [______][______][______][______][______]/[BLOCKED/FAILED]
+load kernelspace          [______][______][______][______][______]/[BLOCKED/FAILED]
+load userspace            [______][______][______][______][______]/[BLOCKED/FAILED]
 
 3.6 switch test           [susp/res][sem:sig/wait][rpc:rcv-ret]
 ---------------------------------------------------------------
-idle kernelspace oneshot  [________][____________][___________]/[BLOCKED/FAILED]
-idle kernelspace periodic [________][____________][___________]/[BLOCKED/FAILED]
-idle userspace   oneshot  [________][____________][___________]/[BLOCKED/FAILED]
-idle userspace   periodic [________][____________][___________]/[BLOCKED/FAILED]
-load kernelspace oneshot  [________][____________][___________]/[BLOCKED/FAILED]
-load kernelspace periodic [________][____________][___________]/[BLOCKED/FAILED]
-load userspace   oneshot  [________][____________][___________]/[BLOCKED/FAILED]
-load userspace   periodic [________][____________][___________]/[BLOCKED/FAILED]
+idle kernelspace          [________][____________][___________]/[BLOCKED/FAILED]
+idle userspace            [________][____________][___________]/[BLOCKED/FAILED]
+load kernelspace          [________][____________][___________]/[BLOCKED/FAILED]
+load userspace            [________][____________][___________]/[BLOCKED/FAILED]
 
 3.8 latency test, 12h     [min___][avg___][max___]
 --------------------------------------------------
 load userspace oneshot    [______][______][______]/[BLOCKED/FAILED]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                                                                                    page 2/2
