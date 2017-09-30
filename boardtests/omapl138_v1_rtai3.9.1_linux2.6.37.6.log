@@ -55,8 +55,8 @@ latency test:
 3.2   latency: idle system
 3.2.1 kernelspace, oneshot  [PASSED]
 3.2.2 kernelspace, periodic [PASSED]
-3.2.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
-3.2.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+3.2.3 userspace,   oneshot  [PASSED]
+3.2.4 userspace,   periodic [PASSED]
 3.3   latency: system under load
 3.3.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
 3.3.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
@@ -68,7 +68,7 @@ preempt test:
 3.4   preempt: idle system
                                                                                    page 1/2
 3.4.1 kernelspace           [PASSED]
-3.4.3 userspace             [PASSED/BLOCKED/FAILED]
+3.4.3 userspace             [PASSED]
 3.5   preempt: system under load
 3.5.1 kernelspace           [PASSED/BLOCKED/FAILED]
 3.5.3 userspace             [PASSED/BLOCKED/FAILED]
@@ -77,7 +77,7 @@ switch test:
 (rtai_sched.ko, sysload: dd /dev/urandom /dev/null)
 3.6   switch: idle system
 3.6.1 kernelspace           [PASSED]
-3.6.3 userspace             [PASSED/BLOCKED/FAILED]
+3.6.3 userspace             [PASSED]
 3.6   switch: system under load
 3.7.1 kernelspace           [PASSED/BLOCKED/FAILED]
 3.7.3 userspace             [PASSED/BLOCKED/FAILED]
@@ -94,8 +94,8 @@ performance
 --------------------------------------------------
 idle kernelspace oneshot  [467500][468777][502583]
 idle kernelspace periodic [-40417][     0][ 64250]
-idle userspace   oneshot  [______][______][______]/[BLOCKED/FAILED]
-idle userspace   periodic [______][______][______]/[BLOCKED/FAILED]
+idle userspace   oneshot  [392875][395236][422083]
+idle userspace   periodic [-28917][_____0][ 78209]
 load kernelspace oneshot  [______][______][______]/[BLOCKED/FAILED]
 load kernelspace periodic [______][______][______]/[BLOCKED/FAILED]
 load userspace   oneshot  [______][______][______]/[BLOCKED/FAILED]
@@ -104,14 +104,14 @@ load userspace   periodic [______][______][______]/[BLOCKED/FAILED]
 3.4/3.5 preempt test      [min___][avg___][max___][j-fast][j-slow]
 ------------------------------------------------------------------
 idle kernelspace          [476000][476972][513291][ 57000][ 53750]
-idle userspace            [______][______][______][______][______]/[BLOCKED/FAILED]
+idle userspace            [ 98583][135917][199041][ 265791[264458]
 load kernelspace          [______][______][______][______][______]/[BLOCKED/FAILED]
 load userspace            [______][______][______][______][______]/[BLOCKED/FAILED]
 
 3.6 switch test           [susp/res][sem:sig/wait][rpc:rcv-ret]
 ---------------------------------------------------------------
 idle kernelspace          [    4680][        5231][       6340]
-idle userspace            [________][____________][___________]/[BLOCKED/FAILED]
+idle userspace            [   15429][       17915][      23325]
 load kernelspace          [________][____________][___________]/[BLOCKED/FAILED]
 load userspace            [________][____________][___________]/[BLOCKED/FAILED]
 
