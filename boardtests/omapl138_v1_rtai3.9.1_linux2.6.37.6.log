@@ -92,8 +92,8 @@ performance
 
 3.2/3.3 latency test      [min___][avg___][max___]
 --------------------------------------------------
-idle kernelspace oneshot  [-40417][     0][ 64250]
-idle kernelspace periodic [467500][468777][502583]
+idle kernelspace oneshot  [467500][468777][502583]
+idle kernelspace periodic [-40417][     0][ 64250]
 idle userspace   oneshot  [______][______][______]/[BLOCKED/FAILED]
 idle userspace   periodic [______][______][______]/[BLOCKED/FAILED]
 load kernelspace oneshot  [______][______][______]/[BLOCKED/FAILED]
