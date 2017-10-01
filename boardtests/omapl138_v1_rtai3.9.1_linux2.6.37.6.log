@@ -95,7 +95,7 @@ performance
 idle kernelspace oneshot  [467500][468777][502583]
 idle kernelspace periodic [-40417][     0][ 64250]
 idle userspace   oneshot  [392875][395236][422083]
-idle userspace   periodic [-28917][_____0][ 78209]
+idle userspace   periodic [-28917][     0][ 78209]
 load kernelspace oneshot  [______][______][______]/[BLOCKED/FAILED]
 load kernelspace periodic [______][______][______]/[BLOCKED/FAILED]
 load userspace   oneshot  [______][______][______]/[BLOCKED/FAILED]
@@ -104,7 +104,7 @@ load userspace   periodic [______][______][______]/[BLOCKED/FAILED]
 3.4/3.5 preempt test      [min___][avg___][max___][j-fast][j-slow]
 ------------------------------------------------------------------
 idle kernelspace          [476000][476972][513291][ 57000][ 53750]
-idle userspace            [ 98583][135917][199041][ 265791[264458]
+idle userspace            [ 98583][135917][199041][265791][264458]
 load kernelspace          [______][______][______][______][______]/[BLOCKED/FAILED]
 load userspace            [______][______][______][______][______]/[BLOCKED/FAILED]
 
