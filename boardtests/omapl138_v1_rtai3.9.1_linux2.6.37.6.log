@@ -83,7 +83,7 @@ switch test:
 3.7.3 userspace             [PASSED]
 
 latency test, 12h (user/oneshot/load):
-3.8   latency: 12h          [PASSED/BLOCKED/FAILED]
+3.8   latency: 12h          [PASSED]
 
 
 
@@ -117,7 +117,7 @@ load userspace            [   16900][       19538][      25118]
 
 3.8 latency test, 12h     [min___][avg___][max___]
 --------------------------------------------------
-load userspace oneshot    [______][______][______]/[BLOCKED/FAILED]
+load userspace oneshot    [-66833][     0][ 91542]
 
 
 
