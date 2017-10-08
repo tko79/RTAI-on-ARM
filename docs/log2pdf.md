@@ -41,3 +41,4 @@ The `<logfile>` is the log file which should be converted into a pdf document.
 - sed: sed-4.2.1-10 (debian)
 - enscript: enscript-1.6.5.90-2 (debian)
 - ps2pdf: ghostscript-9.05~dfsg-6.3+ (debian)
+- grep: grep-2.12-2 (debian)
