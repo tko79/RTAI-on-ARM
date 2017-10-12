@@ -43,7 +43,10 @@ basic tests
 -----------
 
 loading/unloading kernel modules:
-(modules: rtai_hal.ko sched|lxrt msg sem mbx fifos shm)
+- load:   insmod rtai_hal.ko ; insmod rtai_{sched|lxrt}.ko ; insmod rtai_msg.ko ; insmod
+          rtai_sem.ko ; insmod rtai_mbx.ko ; insmod rtai_fifos.ko ; insmod rtai_shm.ko
+- unload: rmmod rtai_shm rtai_fifos rtai_mbx rtai_sem rtai_msg rtai_{sched|lxrt} rtai_hal
+
 3.1   kernel modules
 3.1.1 load/unload (sched)   [PASSED/FAILED]
 3.1.2 load/unload (sched)   [PASSED/BLOCKED/FAILED]
@@ -51,12 +54,18 @@ loading/unloading kernel modules:
 3.1.4 load/unload (lxrt)    [PASSED/BLOCKED/FAILED]
 
 latency test:
-(rtai_sched.ko, period: 1ms, sysload: dd /dev/urandom /dev/null)
+settings: rtai_sched.ko, period: 1ms, sysload: dd /dev/urandom /dev/null
+- system load: dd if=/dev/urandom of=/dev/null bs=1024 count=1000000 # 1GB
+- kernelspace: insmod latency_rt.ko timer_mode={0|1} period=1000000
+- userspace:   testsuite/user/latency/latency & # (latency.c: #define TIMER_MODE {0|1})
+- display:     testsuite/{kern|user}/latency/display
+
 3.2   latency: idle system
 3.2.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
 3.2.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
 3.2.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
 3.2.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+                                                                                   page 1/2
 3.3   latency: system under load
 3.3.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
 3.3.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
@@ -64,9 +73,13 @@ latency test:
 3.3.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
 
 preempt test:
-(rtai_sched.ko, sysload: dd /dev/urandom /dev/null)
+settings: rtai_sched.ko, sysload: dd /dev/urandom /dev/null
+- system load: dd if=/dev/urandom of=/dev/null bs=1024 count=1000000 # 1GB
+- kernelspace: insmod preempt_rt.ko
+- userspace:   testsuite/user/preempt/preempt &
+- display:     testsuite/{kern|user}/preempt/display
+
 3.4   preempt: idle system
-                                                                                   page 1/2
 3.4.1 kernelspace           [PASSED/BLOCKED/FAILED]
 3.4.3 userspace             [PASSED/BLOCKED/FAILED]
 3.5   preempt: system under load
@@ -74,7 +87,11 @@ preempt test:
 3.5.3 userspace             [PASSED/BLOCKED/FAILED]
 
 switch test:
-(rtai_sched.ko, sysload: dd /dev/urandom /dev/null)
+settings: rtai_sched.ko, sysload: dd /dev/urandom /dev/null
+- system load: dd if=/dev/urandom of=/dev/null bs=1024 count=1000000 # 1GB
+- kernelspace: insmod switches_rt.ko
+- userspace:   testsuite/user/switches/switches
+
 3.6   switch: idle system
 3.6.1 kernelspace           [PASSED/BLOCKED/FAILED]
 3.6.3 userspace             [PASSED/BLOCKED/FAILED]
@@ -118,21 +135,4 @@ load userspace            [________][____________][___________]/[BLOCKED/FAILED]
 3.8 latency test, 12h     [min___][avg___][max___]
 --------------------------------------------------
 load userspace oneshot    [______][______][______]/[BLOCKED/FAILED]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                                                                    page 2/2
