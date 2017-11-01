@@ -458,14 +458,14 @@ index 42ff90b..33be59a 100644
         }
 diff --git a/arch/arm/configs/da850_omapl138_defconfig b/arch/arm/configs/da850_omapl138_defconfig
 new file mode 100644
-index 0000000..03850e0
+index 0000000..acfd0ab
 --- /dev/null
 +++ b/arch/arm/configs/da850_omapl138_defconfig
 @@ -0,0 +1,1850 @@
 +#
 +# Automatically generated make config: don't edit
 +# Linux/arm 2.6.37.6 Kernel Configuration
-+# Fri Jul 19 20:03:04 2013
++# Wed Aug 28 11:33:24 2013
 +#
 +CONFIG_ARM=y
 +CONFIG_SYS_SUPPORTS_APM_EMULATION=y
@@ -598,7 +598,7 @@ index 0000000..03850e0
 +# CONFIG_MODULE_FORCE_LOAD is not set
 +CONFIG_MODULE_UNLOAD=y
 +CONFIG_MODULE_FORCE_UNLOAD=y
-+CONFIG_MODVERSIONS=y
++# CONFIG_MODVERSIONS is not set
 +# CONFIG_MODULE_SRCVERSION_ALL is not set
 +CONFIG_BLOCK=y
 +CONFIG_LBDAF=y
@@ -1609,9 +1609,9 @@ index 0000000..03850e0
 +# CONFIG_FIRMWARE_EDID is not set
 +# CONFIG_FB_DDC is not set
 +# CONFIG_FB_BOOT_VESA_SUPPORT is not set
-+CONFIG_FB_CFB_FILLRECT=y
-+CONFIG_FB_CFB_COPYAREA=y
-+CONFIG_FB_CFB_IMAGEBLIT=y
++# CONFIG_FB_CFB_FILLRECT is not set
++# CONFIG_FB_CFB_COPYAREA is not set
++# CONFIG_FB_CFB_IMAGEBLIT is not set
 +# CONFIG_FB_CFB_REV_PIXELS_IN_BYTE is not set
 +# CONFIG_FB_SYS_FILLRECT is not set
 +# CONFIG_FB_SYS_COPYAREA is not set
@@ -1629,7 +1629,7 @@ index 0000000..03850e0
 +#
 +# CONFIG_FB_S1D13XXX is not set
 +# CONFIG_FB_TMIO is not set
-+CONFIG_FB_DA8XX=y
++# CONFIG_FB_DA8XX is not set
 +# CONFIG_FB_VIRTUAL is not set
 +# CONFIG_FB_METRONOME is not set
 +# CONFIG_FB_MB862XX is not set
@@ -12944,7 +12944,7 @@ index 1875740..d7602c5 100644
  	}
  
 diff --git a/arch/arm/mach-davinci/time.c b/arch/arm/mach-davinci/time.c
-index 0f21c36..e74fbef 100644
+index 0f21c36..370be2e 100644
 --- a/arch/arm/mach-davinci/time.c
 +++ b/arch/arm/mach-davinci/time.c
 @@ -18,6 +18,7 @@
@@ -13083,7 +13083,7 @@ index 0f21c36..e74fbef 100644
  	clocksource_davinci.name = id_to_name[clocksource_id];
  	clocksource_davinci.mult =
  		clocksource_khz2mult(davinci_clock_tick_rate/1000,
-@@ -453,3 +512,92 @@ void davinci_watchdog_reset(struct platform_device *pdev)
+@@ -453,3 +512,96 @@ void davinci_watchdog_reset(struct platform_device *pdev)
  	wdtcr = 0x00004000;
  	__raw_writel(wdtcr, base + WDTCR);
  }
@@ -13145,10 +13145,14 @@ index 0f21c36..e74fbef 100644
 +{
 +	struct timer_s *t = &timers[IPIPE_MACH_TSC_CLOCK];
 +	unsigned long flags;
++	int tcr;
 +
 +	if (delay > 2) {
 +		local_irq_save_hw(flags);
-+		__raw_writel(__raw_readl(t->base + t->tim_off) + delay, t->base + t->tim_off);
++		tcr = __raw_readl(t->base + TCR);
++		__raw_writel(tcr & ~(TCR_ENAMODE_MASK << t->enamode_shift), t->base + TCR);
++		__raw_writel(__raw_readl(t->base + t->tim_off) + delay, t->base + t->prd_off);
++		__raw_writel(tcr | (TCR_ENAMODE_ONESHOT << t->enamode_shift), t->base + TCR);
 +		local_irq_restore_hw(flags);
 +	} else
 +		ipipe_trigger_irq(IPIPE_MACH_TSC_IRQ);
@@ -22114,10 +22118,10 @@ index 32f9fd6..0fcf21b 100644
  #endif /* LINUX_HARDIRQ_H */
 diff --git a/include/linux/ipipe.h b/include/linux/ipipe.h
 new file mode 100644
-index 0000000..e25d4d7
+index 0000000..7c205c0
 --- /dev/null
 +++ b/include/linux/ipipe.h
-@@ -0,0 +1,742 @@
+@@ -0,0 +1,744 @@
 +/* -*- linux-c -*-
 + * include/linux/ipipe.h
 + *
@@ -22267,7 +22271,9 @@ index 0000000..e25d4d7
 +
 +typedef void (*ipipe_irq_ackfn_t)(unsigned irq, struct irq_desc *desc);
 +
-+typedef int (*ipipe_event_handler_t)(unsigned event, void *data);
++typedef int (*ipipe_event_handler_t)(unsigned event,
++				     struct ipipe_domain *from,
++				     void *data);
 +struct ipipe_domain {
 +
 +	int slot;			/* Slot number in percpu domain data array. */
@@ -24824,10 +24830,10 @@ index 0000000..6257dfa
 +obj-$(CONFIG_IPIPE_TRACE) += tracer.o
 diff --git a/kernel/ipipe/core.c b/kernel/ipipe/core.c
 new file mode 100644
-index 0000000..bbbd2f8
+index 0000000..607a5ba
 --- /dev/null
 +++ b/kernel/ipipe/core.c
-@@ -0,0 +1,2197 @@
+@@ -0,0 +1,2200 @@
 +/* -*- linux-c -*-
 + * linux/kernel/ipipe/core.c
 + *
@@ -25873,7 +25879,12 @@ index 0000000..bbbd2f8
 +
 +int __ipipe_dispatch_event (unsigned event, void *data)
 +{
-+	struct ipipe_domain *this_domain, *next_domain;
++	extern void *ipipe_irq_handler;
++	void *handler;
++	if (ipipe_irq_handler != __ipipe_handle_irq && (handler = ipipe_root_domain->evhand[event])) {
++		return ((int (*)(unsigned long, void *))handler)(event, data);
++	} else {
++	struct ipipe_domain *start_domain, *this_domain, *next_domain;
 +	struct ipipe_percpu_domain_data *np;
 +	ipipe_event_handler_t evhand;
 +	struct list_head *pos, *npos;
@@ -25882,7 +25893,7 @@ index 0000000..bbbd2f8
 +
 +	local_irq_save_hw(flags);
 +
-+	this_domain = __ipipe_current_domain;
++	start_domain = this_domain = __ipipe_current_domain;
 +
 +	list_for_each_safe(pos, npos, &__ipipe_pipeline) {
 +		/*
@@ -25902,14 +25913,11 @@ index 0000000..bbbd2f8
 +		 */
 +		evhand = next_domain->evhand[event];
 +
-+		if ((evhand == NULL) && (this_domain != ipipe_root_domain))
-+			evhand = ipipe_root_domain->evhand[event];
-+
 +		if (evhand != NULL) {
 +			__ipipe_current_domain = next_domain;
 +			np->evsync |= (1LL << event);
 +			local_irq_restore_hw(flags);
-+			propagate = !evhand(event, data);
++			propagate = !evhand(event, start_domain, data);
 +			local_irq_save_hw(flags);
 +			/*
 +			 * We may have a migration issue here, if the
@@ -25947,6 +25955,7 @@ index 0000000..bbbd2f8
 +	local_irq_restore_hw(flags);
 +
 +	return !propagate;
++	}
 +}
 +
 +/*
