@@ -2,7 +2,7 @@ board test
 ----------
 
 date & test version:
-date         [<date>]
+date         [03.11.2017]
 test version [v0.2.1]
 
 system:
@@ -48,10 +48,10 @@ loading/unloading kernel modules:
 - unload: rmmod rtai_shm rtai_fifos rtai_mbx rtai_sem rtai_msg rtai_{sched|lxrt} rtai_hal
 
 3.1   kernel modules
-3.1.1 load/unload (sched)   [PASSED/FAILED]
-3.1.2 load/unload (sched)   [PASSED/BLOCKED/FAILED]
-3.1.3 load/unload (lxrt)    [PASSED/BLOCKED/FAILED]
-3.1.4 load/unload (lxrt)    [PASSED/BLOCKED/FAILED]
+3.1.1 load/unload (sched)   [PASSED]
+3.1.2 load/unload (sched)   [PASSED]
+3.1.3 load/unload (lxrt)    [PASSED]
+3.1.4 load/unload (lxrt)    [PASSED]
 
 latency test:
 settings: rtai_sched.ko, period: 1ms, sysload: dd /dev/urandom /dev/null
@@ -61,16 +61,16 @@ settings: rtai_sched.ko, period: 1ms, sysload: dd /dev/urandom /dev/null
 - display:     testsuite/{kern|user}/latency/display
 
 3.2   latency: idle system
-3.2.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
-3.2.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
-3.2.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
-3.2.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+3.2.1 kernelspace, oneshot  [PASSED]
+3.2.2 kernelspace, periodic [PASSED]
+3.2.3 userspace,   oneshot  [PASSED]
+3.2.4 userspace,   periodic [PASSED]
                                                                                    page 1/2
 3.3   latency: system under load
-3.3.1 kernelspace, oneshot  [PASSED/BLOCKED/FAILED]
-3.3.2 kernelspace, periodic [PASSED/BLOCKED/FAILED]
-3.3.3 userspace,   oneshot  [PASSED/BLOCKED/FAILED]
-3.3.4 userspace,   periodic [PASSED/BLOCKED/FAILED]
+3.3.1 kernelspace, oneshot  [PASSED]
+3.3.2 kernelspace, periodic [PASSED]
+3.3.3 userspace,   oneshot  [PASSED]
+3.3.4 userspace,   periodic [PASSED]
 
 preempt test:
 settings: rtai_sched.ko, sysload: dd /dev/urandom /dev/null
@@ -80,11 +80,11 @@ settings: rtai_sched.ko, sysload: dd /dev/urandom /dev/null
 - display:     testsuite/{kern|user}/preempt/display
 
 3.4   preempt: idle system
-3.4.1 kernelspace           [PASSED/BLOCKED/FAILED]
-3.4.3 userspace             [PASSED/BLOCKED/FAILED]
+3.4.1 kernelspace           [PASSED]
+3.4.3 userspace             [PASSED]
 3.5   preempt: system under load
-3.5.1 kernelspace           [PASSED/BLOCKED/FAILED]
-3.5.3 userspace             [PASSED/BLOCKED/FAILED]
+3.5.1 kernelspace           [PASSED]
+3.5.3 userspace             [PASSED]
 
 switch test:
 settings: rtai_sched.ko, sysload: dd /dev/urandom /dev/null
@@ -93,14 +93,14 @@ settings: rtai_sched.ko, sysload: dd /dev/urandom /dev/null
 - userspace:   testsuite/user/switches/switches
 
 3.6   switch: idle system
-3.6.1 kernelspace           [PASSED/BLOCKED/FAILED]
-3.6.3 userspace             [PASSED/BLOCKED/FAILED]
+3.6.1 kernelspace           [PASSED]
+3.6.3 userspace             [PASSED]
 3.6   switch: system under load
-3.7.1 kernelspace           [PASSED/BLOCKED/FAILED]
-3.7.3 userspace             [PASSED/BLOCKED/FAILED]
+3.7.1 kernelspace           [PASSED]
+3.7.3 userspace             [PASSED]
 
 latency test, 12h (user/oneshot/load):
-3.8   latency: 12h          [PASSED/BLOCKED/FAILED]
+3.8   latency: 12h          [PASSED]
 
 
 
@@ -109,30 +109,30 @@ performance
 
 3.2/3.3 latency test      [min___][avg___][max___]
 --------------------------------------------------
-idle kernelspace oneshot  [______][______][______]/[BLOCKED/FAILED]
-idle kernelspace periodic [______][______][______]/[BLOCKED/FAILED]
-idle userspace   oneshot  [______][______][______]/[BLOCKED/FAILED]
-idle userspace   periodic [______][______][______]/[BLOCKED/FAILED]
-load kernelspace oneshot  [______][______][______]/[BLOCKED/FAILED]
-load kernelspace periodic [______][______][______]/[BLOCKED/FAILED]
-load userspace   oneshot  [______][______][______]/[BLOCKED/FAILED]
-load userspace   periodic [______][______][______]/[BLOCKED/FAILED]
+idle kernelspace oneshot  [  5833][  7685][ 41916]
+idle kernelspace periodic [-36208][     0][ 48750]
+idle userspace   oneshot  [ 83750][ 86717][114541]
+idle userspace   periodic [-30917][     0][ 31500]
+load kernelspace oneshot  [  6250][ 10760][ 46750]
+load kernelspace periodic [-53917][     0][ 56500]
+load userspace   oneshot  [ 84583][ 87817][111833]
+load userspace   periodic [-29625][     0][ 30208]
 
 3.4/3.5 preempt test      [min___][avg___][max___][j-fast][j-slow]
 ------------------------------------------------------------------
-idle kernelspace          [______][______][______][______][______]/[BLOCKED/FAILED]
-idle userspace            [______][______][______][______][______]/[BLOCKED/FAILED]
-load kernelspace          [______][______][______][______][______]/[BLOCKED/FAILED]
-load userspace            [______][______][______][______][______]/[BLOCKED/FAILED]
+idle kernelspace          [  5791][  7659][ 39875][978334][993750]
+idle userspace            [ 10333][ 50382][114791][172875][170583]
+load kernelspace          [  5750][  8339][ 48416][980208][997833]
+load userspace            [ 10791][ 62033][119250][177625][172250]
 
 3.6 switch test           [susp/res][sem:sig/wait][rpc:rcv-ret]
 ---------------------------------------------------------------
-idle kernelspace          [________][____________][___________]/[BLOCKED/FAILED]
-idle userspace            [________][____________][___________]/[BLOCKED/FAILED]
-load kernelspace          [________][____________][___________]/[BLOCKED/FAILED]
-load userspace            [________][____________][___________]/[BLOCKED/FAILED]
+idle kernelspace          [    2504][        2621][       3148]
+idle userspace            [   12098][       13507][      15942]
+load kernelspace          [    2503][        2620][       3167]
+load userspace            [   12019][       13615][      15695]
 
 3.8 latency test, 12h     [min___][avg___][max___]
 --------------------------------------------------
-load userspace oneshot    [______][______][______]/[BLOCKED/FAILED]
+load userspace oneshot    [ 50833][ 87875][119583]
                                                                                    page 2/2
