@@ -28,6 +28,9 @@ EOF
 )
 
 PREFIX_KMOD="/install/modules/"
+PREFIX_TESTSUITE="/install/testsuite/"
+LATENCY_PERIOD=1000000
+TEST_DURATION=10
 
 function _create_device_files() {
     if [ ! -e /dev/rtf0 ]; then
@@ -73,4 +76,26 @@ function load_unload_kernel_modules() {
     _load_modules lxrt;  lsmod; _unload_modules; lsmod
     echo "3.1.4: load/unload kernel modules (lxrt)"
     _load_modules lxrt;  lsmod; _unload_modules; lsmod
+}
+
+function _latency_kernel() {
+    periodic_oneshot=$1
+
+    insmod ${PREFIX_KMOD}/latency_rt.ko timer_mode=$periodic_oneshot period=$LATENCY_PERIOD
+
+    $PREFIX_TESTSUITE/kern/latency/display &
+    sleep $TEST_DURATION
+    killall display
+}
+
+function latency_test_idle() {
+    echo "3.2: latency tests (idle system)"
+
+    _create_device_files
+    _unload_modules
+
+    echo "3.2.1: latency, idle, kernelspace, oneshot"
+    _load_modules sched; _latency_kernel 0; _unload_modules
+    echo "3.2.2: latency, idle, kernelspace, periodic"
+    _load_modules sched; _latency_kernel 1; _unload_modules
 }
