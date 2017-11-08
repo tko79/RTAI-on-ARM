@@ -29,6 +29,7 @@ EOF
 
 PREFIX_KMOD="/install/modules/"
 PREFIX_TESTSUITE="/install/testsuite/"
+PREFIX_LIBS="/install/lib/"
 LATENCY_PERIOD=1000000
 TEST_DURATION=10
 
@@ -83,9 +84,25 @@ function _latency_kernel() {
 
     insmod ${PREFIX_KMOD}/latency_rt.ko timer_mode=$periodic_oneshot period=$LATENCY_PERIOD
 
-    $PREFIX_TESTSUITE/kern/latency/display &
-    sleep $TEST_DURATION
-    killall display
+    ( sleep $TEST_DURATION; killall display ) &
+    $PREFIX_TESTSUITE/kern/latency/display
+}
+
+function _latency_user() {
+    periodic_oneshot=$1
+
+    # periodic/oneshot mode in userspace is defined by TIMER_MODE in latency.c
+    # oneshot=0 is default -> latency ; periodic=1 is manually modified -> latency-p
+    if [ $periodic_oneshot -eq 0 ]; then
+	latencyprg=latency
+    else
+	latencyprg=latency-p
+    fi
+    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/latency/$latencyprg &
+    sleep 1
+
+    ( sleep $TEST_DURATION; killall display ) &
+    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/latency/display
 }
 
 function latency_test_idle() {
@@ -98,4 +115,8 @@ function latency_test_idle() {
     _load_modules sched; _latency_kernel 0; _unload_modules
     echo "3.2.2: latency, idle, kernelspace, periodic"
     _load_modules sched; _latency_kernel 1; _unload_modules
+    echo "3.2.3: latency, idle, userspace, oneshot"
+    _load_modules sched; _latency_user 0; _unload_modules
+    echo "3.2.4: latency, idle, userspace, periodic"
+    _load_modules sched; _latency_user 1; _unload_modules
 }
