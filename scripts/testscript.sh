@@ -120,3 +120,23 @@ function latency_test_idle() {
     echo "3.2.4: latency, idle, userspace, periodic"
     _load_modules sched; _latency_user 1; _unload_modules
 }
+
+function latency_test_load() {
+    echo "3.3: latency tests (system under load)"
+
+    _create_device_files
+    _unload_modules
+
+    dd if=/dev/urandom of=/dev/null bs=1024 count=1000000 &
+
+    echo "3.3.1: latency, load, kernelspace, oneshot"
+    _load_modules sched; _latency_kernel 0; _unload_modules
+    echo "3.3.2: latency, load, kernelspace, periodic"
+    _load_modules sched; _latency_kernel 1; _unload_modules
+    echo "3.3.3: latency, load, userspace, oneshot"
+    _load_modules sched; _latency_user 0; _unload_modules
+    echo "3.3.4: latency, load, userspace, periodic"
+    _load_modules sched; _latency_user 1; _unload_modules
+
+    killall dd
+}
