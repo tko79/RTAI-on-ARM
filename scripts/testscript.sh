@@ -140,3 +140,30 @@ function latency_test_load() {
 
     killall dd
 }
+
+function _preempt_kernel() {
+    insmod ${PREFIX_KMOD}/preempt_rt.ko
+
+    ( sleep $TEST_DURATION; killall display ) &
+    $PREFIX_TESTSUITE/kern/preempt/display
+}
+
+function _preempt_user() {
+    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/preempt/preempt &
+    sleep 1
+
+    ( sleep $TEST_DURATION; killall display ) &
+    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/preempt/display
+}
+
+function preempt_test_idle() {
+    echo "3.4: preempt tests (idle system)"
+
+    _create_device_files
+    _unload_modules
+
+    echo "3.4.1: preempt, idle, kernelspace"
+    _load_modules sched; _preempt_kernel; _unload_modules
+    echo "3.4.2: preempt, idle, userspace"
+    _load_modules sched; _preempt_user; _unload_modules
+}
