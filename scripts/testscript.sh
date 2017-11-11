@@ -167,3 +167,19 @@ function preempt_test_idle() {
     echo "3.4.2: preempt, idle, userspace"
     _load_modules sched; _preempt_user; _unload_modules
 }
+
+function preempt_test_load() {
+    echo "3.5: preempt tests (system under load)"
+
+    _create_device_files
+    _unload_modules
+
+    dd if=/dev/urandom of=/dev/null bs=1024 count=1000000 &
+
+    echo "3.5.1: preempt, load, kernelspace"
+    _load_modules sched; _preempt_kernel; _unload_modules
+    echo "3.5.2: preempt, load, userspace"
+    _load_modules sched; _preempt_user; _unload_modules
+
+    killall dd
+}
