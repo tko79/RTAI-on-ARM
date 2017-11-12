@@ -183,3 +183,24 @@ function preempt_test_load() {
 
     killall dd
 }
+
+function _switches_kernel() {
+    insmod ${PREFIX_KMOD}/switches_rt.ko
+}
+
+function _switches_user() {
+    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/switches/switches &
+    sleep 1
+}
+
+function switches_test_idle() {
+    echo "3.6: switches tests (idle system)"
+
+    _create_device_files
+    _unload_modules
+
+    echo "3.6.1: preempt, load, kernelspace"
+    _load_modules sched; _switches_kernel; _unload_modules
+    echo "3.6.2: preempt, load, userspace"
+    _load_modules sched; _switches_user; _unload_modules
+}
