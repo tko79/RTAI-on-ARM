@@ -204,3 +204,19 @@ function switches_test_idle() {
     echo "3.6.2: preempt, load, userspace"
     _load_modules sched; _switches_user; _unload_modules
 }
+
+function switches_test_load() {
+    echo "3.7: switches tests (system under load)"
+
+    _create_device_files
+    _unload_modules
+
+    dd if=/dev/urandom of=/dev/null bs=1024 count=1000000 &
+
+    echo "3.7.1: preempt, load, kernelspace"
+    _load_modules sched; _switches_kernel; _unload_modules
+    echo "3.7.2: preempt, load, userspace"
+    _load_modules sched; _switches_user; _unload_modules
+
+    killall dd
+}
