@@ -220,3 +220,24 @@ function switches_test_load() {
 
     killall dd
 }
+
+function _latency_user_12h() {
+    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/latency/latency &
+    sleep 1
+
+    ( sleep 43200; killall display ) &
+    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/latency/display
+}
+
+function latency_test_12h() {
+    echo "3.8: 12h latency test (system under load)"
+
+    _create_device_files
+    _unload_modules
+
+    dd if=/dev/urandom of=/dev/null bs=1024 count=100000000 &
+
+    _load_modules sched; _latency_user_12h; _unload_modules
+
+    killall dd
+}
