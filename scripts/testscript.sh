@@ -27,9 +27,9 @@ or (at your option) any later version.
 EOF
 )
 
-PREFIX_KMOD="/install/modules/"
-PREFIX_TESTSUITE="/install/testsuite/"
-PREFIX_LIBS="/install/lib/"
+PATH_KMOD="/install/modules/"
+PATH_TESTSUITE="/install/testsuite/"
+PATH_LIBS="/install/lib/"
 LATENCY_PERIOD=1000000
 TEST_DURATION=10
 
@@ -45,13 +45,13 @@ function _create_device_files() {
 function _load_modules() {
     sched_lxrt=$1
 
-    insmod ${PREFIX_KMOD}/rtai_hal.ko
-    insmod ${PREFIX_KMOD}/rtai_${sched_lxrt}.ko
-    insmod ${PREFIX_KMOD}/rtai_msg.ko
-    insmod ${PREFIX_KMOD}/rtai_sem.ko
-    insmod ${PREFIX_KMOD}/rtai_mbx.ko
-    insmod ${PREFIX_KMOD}/rtai_fifos.ko
-    insmod ${PREFIX_KMOD}/rtai_shm.ko
+    insmod ${PATH_KMOD}/rtai_hal.ko
+    insmod ${PATH_KMOD}/rtai_${sched_lxrt}.ko
+    insmod ${PATH_KMOD}/rtai_msg.ko
+    insmod ${PATH_KMOD}/rtai_sem.ko
+    insmod ${PATH_KMOD}/rtai_mbx.ko
+    insmod ${PATH_KMOD}/rtai_fifos.ko
+    insmod ${PATH_KMOD}/rtai_shm.ko
 }
 
 function _unload_modules() {
@@ -82,10 +82,10 @@ function load_unload_kernel_modules() {
 function _latency_kernel() {
     periodic_oneshot=$1
 
-    insmod ${PREFIX_KMOD}/latency_rt.ko timer_mode=$periodic_oneshot period=$LATENCY_PERIOD
+    insmod ${PATH_KMOD}/latency_rt.ko timer_mode=$periodic_oneshot period=$LATENCY_PERIOD
 
     ( sleep $TEST_DURATION; killall display ) &
-    $PREFIX_TESTSUITE/kern/latency/display
+    $PATH_TESTSUITE/kern/latency/display
 }
 
 function _latency_user() {
@@ -98,11 +98,11 @@ function _latency_user() {
     else
 	latencyprg=latency-p
     fi
-    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/latency/$latencyprg &
+    LD_LIBRARY_PATH=$PATH_LIBS $PATH_TESTSUITE/user/latency/$latencyprg &
     sleep 1
 
     ( sleep $TEST_DURATION; killall display ) &
-    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/latency/display
+    LD_LIBRARY_PATH=$PATH_LIBS $PATH_TESTSUITE/user/latency/display
 }
 
 function latency_test_idle() {
@@ -142,18 +142,18 @@ function latency_test_load() {
 }
 
 function _preempt_kernel() {
-    insmod ${PREFIX_KMOD}/preempt_rt.ko
+    insmod ${PATH_KMOD}/preempt_rt.ko
 
     ( sleep $TEST_DURATION; killall display ) &
-    $PREFIX_TESTSUITE/kern/preempt/display
+    $PATH_TESTSUITE/kern/preempt/display
 }
 
 function _preempt_user() {
-    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/preempt/preempt &
+    LD_LIBRARY_PATH=$PATH_LIBS $PATH_TESTSUITE/user/preempt/preempt &
     sleep 1
 
     ( sleep $TEST_DURATION; killall display ) &
-    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/preempt/display
+    LD_LIBRARY_PATH=$PATH_LIBS $PATH_TESTSUITE/user/preempt/display
 }
 
 function preempt_test_idle() {
@@ -185,11 +185,11 @@ function preempt_test_load() {
 }
 
 function _switches_kernel() {
-    insmod ${PREFIX_KMOD}/switches_rt.ko
+    insmod ${PATH_KMOD}/switches_rt.ko
 }
 
 function _switches_user() {
-    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/switches/switches &
+    LD_LIBRARY_PATH=$PATH_LIBS $PATH_TESTSUITE/user/switches/switches &
     sleep 1
 }
 
@@ -222,11 +222,11 @@ function switches_test_load() {
 }
 
 function _latency_user_12h() {
-    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/latency/latency &
+    LD_LIBRARY_PATH=$PATH_LIBS $PATH_TESTSUITE/user/latency/latency &
     sleep 1
 
     ( sleep 43200; killall display ) &
-    LD_LIBRARY_PATH=$PREFIX_LIBS $PREFIX_TESTSUITE/user/latency/display
+    LD_LIBRARY_PATH=$PATH_LIBS $PATH_TESTSUITE/user/latency/display
 }
 
 function latency_test_12h() {
