@@ -33,6 +33,9 @@ PATH_LIBS="/install/lib/"
 LATENCY_PERIOD=1000000
 TEST_DURATION=10
 
+COL_RED="\e[1;31m"
+COL_DFL="\e[0m"
+
 function _create_device_files() {
     if [ ! -e /dev/rtf0 ]; then
 	mknod /dev/rtf0 c 150 0
@@ -64,18 +67,18 @@ function _unload_modules() {
 }
 
 function load_unload_kernel_modules() {
-    echo "3.1: load/unload kernel modules"
+    echo -e "\n"$COL_RED"3.1: load/unload kernel modules"$COL_DFL
 
     _create_device_files
     _unload_modules
 
-    echo "3.1.1: load/unload kernel modules (sched)"
+    echo -e "\n"$COL_RED"3.1.1: load/unload kernel modules (sched)"$COL_DFL
     _load_modules sched; lsmod; _unload_modules; lsmod
-    echo "3.1.2: load/unload kernel modules (sched)"
+    echo -e "\n"$COL_RED"3.1.2: load/unload kernel modules (sched)"$COL_DFL
     _load_modules sched; lsmod; _unload_modules; lsmod
-    echo "3.1.3: load/unload kernel modules (lxrt)"
+    echo -e "\n"$COL_RED"3.1.3: load/unload kernel modules (lxrt)"$COL_DFL
     _load_modules lxrt;  lsmod; _unload_modules; lsmod
-    echo "3.1.4: load/unload kernel modules (lxrt)"
+    echo -e "\n"$COL_RED"3.1.4: load/unload kernel modules (lxrt)"$COL_DFL
     _load_modules lxrt;  lsmod; _unload_modules; lsmod
 }
 
@@ -106,36 +109,36 @@ function _latency_user() {
 }
 
 function latency_test_idle() {
-    echo "3.2: latency tests (idle system)"
+    echo -e "\n"$COL_RED"3.2: latency tests (idle system)"$COL_DFL
 
     _create_device_files
     _unload_modules
 
-    echo "3.2.1: latency, idle, kernelspace, oneshot"
+    echo -e "\n"$COL_RED"3.2.1: latency, idle, kernelspace, oneshot"$COL_DFL
     _load_modules sched; _latency_kernel 0; _unload_modules
-    echo "3.2.2: latency, idle, kernelspace, periodic"
+    echo -e "\n"$COL_RED"3.2.2: latency, idle, kernelspace, periodic"$COL_DFL
     _load_modules sched; _latency_kernel 1; _unload_modules
-    echo "3.2.3: latency, idle, userspace, oneshot"
+    echo -e "\n"$COL_RED"3.2.3: latency, idle, userspace, oneshot"$COL_DFL
     _load_modules sched; _latency_user 0; _unload_modules
-    echo "3.2.4: latency, idle, userspace, periodic"
+    echo -e "\n"$COL_RED"3.2.4: latency, idle, userspace, periodic"$COL_DFL
     _load_modules sched; _latency_user 1; _unload_modules
 }
 
 function latency_test_load() {
-    echo "3.3: latency tests (system under load)"
+    echo -e "\n"$COL_RED"3.3: latency tests (system under load)"$COL_DFL
 
     _create_device_files
     _unload_modules
 
     dd if=/dev/urandom of=/dev/null bs=1024 count=1000000 &
 
-    echo "3.3.1: latency, load, kernelspace, oneshot"
+    echo -e "\n"$COL_RED"3.3.1: latency, load, kernelspace, oneshot"$COL_DFL
     _load_modules sched; _latency_kernel 0; _unload_modules
-    echo "3.3.2: latency, load, kernelspace, periodic"
+    echo -e "\n"$COL_RED"3.3.2: latency, load, kernelspace, periodic"$COL_DFL
     _load_modules sched; _latency_kernel 1; _unload_modules
-    echo "3.3.3: latency, load, userspace, oneshot"
+    echo -e "\n"$COL_RED"3.3.3: latency, load, userspace, oneshot"$COL_DFL
     _load_modules sched; _latency_user 0; _unload_modules
-    echo "3.3.4: latency, load, userspace, periodic"
+    echo -e "\n"$COL_RED"3.3.4: latency, load, userspace, periodic"$COL_DFL
     _load_modules sched; _latency_user 1; _unload_modules
 
     killall dd
@@ -157,28 +160,28 @@ function _preempt_user() {
 }
 
 function preempt_test_idle() {
-    echo "3.4: preempt tests (idle system)"
+    echo -e "\n"$COL_RED"3.4: preempt tests (idle system)"$COL_DFL
 
     _create_device_files
     _unload_modules
 
-    echo "3.4.1: preempt, idle, kernelspace"
+    echo -e "\n"$COL_RED"3.4.1: preempt, idle, kernelspace"$COL_DFL
     _load_modules sched; _preempt_kernel; _unload_modules
-    echo "3.4.2: preempt, idle, userspace"
+    echo -e "\n"$COL_RED"3.4.2: preempt, idle, userspace"$COL_DFL
     _load_modules sched; _preempt_user; _unload_modules
 }
 
 function preempt_test_load() {
-    echo "3.5: preempt tests (system under load)"
+    echo -e "\n"$COL_RED"3.5: preempt tests (system under load)"$COL_DFL
 
     _create_device_files
     _unload_modules
 
     dd if=/dev/urandom of=/dev/null bs=1024 count=1000000 &
 
-    echo "3.5.1: preempt, load, kernelspace"
+    echo -e "\n"$COL_RED"3.5.1: preempt, load, kernelspace"$COL_DFL
     _load_modules sched; _preempt_kernel; _unload_modules
-    echo "3.5.2: preempt, load, userspace"
+    echo -e "\n"$COL_RED"3.5.2: preempt, load, userspace"$COL_DFL
     _load_modules sched; _preempt_user; _unload_modules
 
     killall dd
@@ -194,28 +197,28 @@ function _switches_user() {
 }
 
 function switches_test_idle() {
-    echo "3.6: switches tests (idle system)"
+    echo -e "\n"$COL_RED"3.6: switches tests (idle system)"$COL_DFL
 
     _create_device_files
     _unload_modules
 
-    echo "3.6.1: preempt, load, kernelspace"
+    echo -e "\n"$COL_RED"3.6.1: preempt, load, kernelspace"$COL_DFL
     _load_modules sched; _switches_kernel; _unload_modules
-    echo "3.6.2: preempt, load, userspace"
+    echo -e "\n"$COL_RED"3.6.2: preempt, load, userspace"$COL_DFL
     _load_modules sched; _switches_user; _unload_modules
 }
 
 function switches_test_load() {
-    echo "3.7: switches tests (system under load)"
+    echo -e "\n"$COL_RED"3.7: switches tests (system under load)"$COL_DFL
 
     _create_device_files
     _unload_modules
 
     dd if=/dev/urandom of=/dev/null bs=1024 count=1000000 &
 
-    echo "3.7.1: preempt, load, kernelspace"
+    echo -e "\n"$COL_RED"3.7.1: preempt, load, kernelspace"$COL_DFL
     _load_modules sched; _switches_kernel; _unload_modules
-    echo "3.7.2: preempt, load, userspace"
+    echo -e "\n"$COL_RED"3.7.2: preempt, load, userspace"$COL_DFL
     _load_modules sched; _switches_user; _unload_modules
 
     killall dd
@@ -230,7 +233,7 @@ function _latency_user_12h() {
 }
 
 function latency_test_12h() {
-    echo "3.8: 12h latency test (system under load)"
+    echo -e "\n"$COL_RED"3.8: 12h latency test (system under load)"$COL_DFL
 
     _create_device_files
     _unload_modules
