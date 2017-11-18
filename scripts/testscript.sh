@@ -244,3 +244,14 @@ function latency_test_12h() {
 
     killall dd
 }
+
+alias rtai_load_modules='_load_modules sched'
+alias rtai_unload_modules='_unload_modules'
+alias rtai_test_modules='load_unload_kernel_modules'
+alias rtai_test_latency_idle='latency_test_idle'
+alias rtai_test_latency_load='latency_test_load'
+alias rtai_test_preempt_idle='preempt_test_idle'
+alias rtai_test_preempt_load='preempt_test_load'
+alias rtai_test_switches_idle='switches_test_idle'
+alias rtai_test_switches_load='switches_test_load'
+alias rtai_test_latency_12h='latency_test_12h'
